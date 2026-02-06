@@ -1,0 +1,30 @@
+# dependencies
+node_modules/
+
+# production builds
+dist/
+build/
+
+# environment variables (IMPORTANT)
+.env
+.env.*
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# editor
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# cache
+.cache/
+coverage/
+
+# misc
+*.tmp
