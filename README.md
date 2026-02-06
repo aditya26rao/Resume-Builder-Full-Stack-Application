@@ -1,58 +1,56 @@
 # 🚀 AI Resume Builder (MERN + Gemini AI)
 
-An intelligent AI-powered Resume Builder SaaS web app that helps users create professional resumes instantly using Google Gemini AI, export them, and manage profile images with ImageKit.
+An intelligent **AI-powered Resume Builder SaaS web application** that helps users create professional resumes instantly using **Google Gemini AI**, export resumes as PDF, and manage profile images with **ImageKit CDN**.
 
-Built with MongoDB, Express, React, Node.js (MERN stack) and deployed using MongoDB Atlas.
+Built with the **MERN Stack (MongoDB, Express, React, Node.js)** and deployed using **MongoDB Atlas**.
 
-🌟 Features
+---
 
-✅ AI-generated resume content (Gemini API)
-✅ Modern responsive UI (React)
-✅ Resume templates & live preview
-✅ Profile photo upload (ImageKit CDN)
-✅ User authentication (JWT)
-✅ Save resumes to cloud database
-✅ Edit / Delete / Download resumes
-✅ PDF export
-✅ MongoDB Atlas cloud storage
-✅ Production-ready architecture
+## 🌟 Features
 
-🛠️ Tech Stack
-Frontend
+* ✅ AI-generated resume content (Gemini API)
+* ✅ Modern responsive UI (React)
+* ✅ Resume templates with live preview
+* ✅ Profile photo upload (ImageKit CDN)
+* ✅ JWT authentication & authorization
+* ✅ Save resumes to cloud database
+* ✅ Edit / Delete / Download resumes
+* ✅ PDF export
+* ✅ MongoDB Atlas cloud storage
+* ✅ Production-ready architecture
 
-React.js
+---
 
-Tailwind CSS / Bootstrap
+## 🛠️ Tech Stack
 
-Axios
+### Frontend
 
-React Router
+* React.js
+* Tailwind CSS / Bootstrap
+* Axios
+* React Router
 
-Backend
+### Backend
 
-Node.js
+* Node.js
+* Express.js
+* MongoDB + Mongoose
+* JWT Authentication
+* Gemini AI API
+* ImageKit
 
-Express.js
+### Cloud & Tools
 
-MongoDB + Mongoose
+* MongoDB Atlas
+* ImageKit CDN
+* Git & GitHub
+* Render / Vercel (deployment)
 
-JWT Authentication
+---
 
-Gemini AI API
+## 📂 Project Structure
 
-ImageKit
-
-Cloud & Tools
-
-MongoDB Atlas
-
-ImageKit CDN
-
-Git & GitHub
-
-Render / Vercel (deployment)
-
-📂 Project Structure
+```
 Resume-Builder-MERN/
 │
 ├── backend/
@@ -73,119 +71,147 @@ Resume-Builder-MERN/
 ├── .env
 ├── .gitignore
 ├── README.md
+```
 
-⚙️ Installation & Setup
-1️⃣ Clone repo
+---
+
+## ⚙️ Installation & Setup
+
+### 1️⃣ Clone Repository
+
+```bash
 git clone https://github.com/your-username/ai-resume-builder.git
 cd ai-resume-builder
+```
 
-2️⃣ Backend setup
+---
+
+### 2️⃣ Backend Setup
+
+```bash
 cd backend
 npm install
+```
 
+Create `.env` file:
 
-Create .env
-
+```env
 PORT=5000
 MONGO_URI=your_mongodb_atlas_url
-JWT_SECRET=your_secret
+JWT_SECRET=your_secret_key
 
-GEMINI_API_KEY=your_gemini_key
+GEMINI_API_KEY=your_gemini_api_key
 
 IMAGEKIT_PUBLIC_KEY=xxx
 IMAGEKIT_PRIVATE_KEY=xxx
 IMAGEKIT_URL_ENDPOINT=xxx
-
+```
 
 Run backend:
 
+```bash
 npm run dev
+```
 
-3️⃣ Frontend setup
+---
+
+### 3️⃣ Frontend Setup
+
+```bash
 cd frontend
 npm install
 npm run dev
+```
 
-🚀 Usage
+---
 
-Register / Login
+## 🚀 Usage
 
-Enter details
+1. Register / Login
+2. Enter resume details
+3. Generate resume using AI
+4. Upload profile photo
+5. Preview template
+6. Download resume as PDF
 
-Generate resume using AI
+---
 
-Upload profile photo
+## 🧠 How Gemini AI Works
 
-Preview template
+* User provides job role and skills
+* Backend sends prompt → Gemini API
+* AI generates:
 
-Download PDF
+  * Professional summary
+  * Experience bullet points
+  * Skills descriptions
+* Data automatically fills the resume template
 
-🧠 How Gemini AI Works
+---
 
-User inputs job role / skills
+## 🔐 Environment Variables
 
-Backend sends prompt → Gemini API
+⚠️ Never push `.env` to GitHub.
 
-AI generates:
+Required variables:
 
-Summary
-
-Experience points
-
-Skills description
-
-Data auto-fills resume
-
-🔐 Environment Variables
-
-Never push .env to GitHub.
-
-Required:
-
+```
 MONGO_URI
 JWT_SECRET
 GEMINI_API_KEY
-IMAGEKIT_KEYS
+IMAGEKIT_PUBLIC_KEY
+IMAGEKIT_PRIVATE_KEY
+IMAGEKIT_URL_ENDPOINT
+```
 
-📸 Screenshots (optional)
+---
 
-(Add your UI screenshots here later)
+## 📸 Screenshots
 
-🎯 Future Improvements
+*Add your application screenshots here*
 
-Multiple resume templates
+---
 
-Drag & drop sections
+## 🎯 Future Improvements
 
-ATS score checker
+* Multiple resume templates
+* Drag & drop section builder
+* ATS score checker
+* Resume sharing link
+* Payment integration (SaaS model)
+* Docker deployment
+* Multi-language support
 
-Resume sharing link
+---
 
-Payment integration (SaaS)
-
-Docker deployment
-
-💡 Learning Outcomes
+## 💡 Learning Outcomes
 
 This project demonstrates:
 
-✔ Full-stack MERN development
-✔ REST APIs
-✔ Authentication & Security
-✔ AI API integration
-✔ Cloud storage (ImageKit)
-✔ Production deployment
+* ✔ Full-stack MERN development
+* ✔ REST API design
+* ✔ Authentication & Security (JWT)
+* ✔ AI API integration
+* ✔ Cloud image storage (ImageKit)
+* ✔ Production deployment practices
 
-🤝 Contributing
+---
 
-Pull requests are welcome. For major changes, open an issue first.
+## 🤝 Contributing
 
-📜 License
+Pull requests are welcome.
+For major changes, open an issue first to discuss improvements.
+
+---
+
+## 📜 License
 
 MIT License
 
-👨‍💻 Author
+---
 
-Aditya Rao
-Python / MERN Full Stack Developer
+## 👨‍💻 Author
+
+**Aditya Rao**
+Python & MERN Full Stack Developer
 
