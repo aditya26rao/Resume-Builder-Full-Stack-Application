@@ -62,10 +62,6 @@ export const enhanceJobDescription = async (req, res) => {
 export const uploadResume = async (req, res) => {
     try {
         const { resumeText, title } = req.body;
-        console.log("Upload Resume Request Received");
-        console.log("Title:", title);
-        console.log("Resume Text Length:", resumeText ? resumeText.length : "undefined");
-
         const userId = req.userId;
         if (!resumeText) {
             return res.status(400).json({ message: 'Missing required fields' })
@@ -117,8 +113,6 @@ export const uploadResume = async (req, res) => {
     }
         `;
 
-        console.log("Calling OpenAI API with model:", process.env.OPENAI_MODEL);
-
         // Combined prompt for better compatibility
         const messages = [
             {
@@ -132,9 +126,7 @@ export const uploadResume = async (req, res) => {
             messages: messages,
         });
 
-        console.log("OpenAI Response received");
         let extractedData = response.choices[0].message.content;
-        console.log("Extracted Data:", extractedData);
 
         // Sanitize extracted data if it contains markdown code blocks
         if (extractedData.startsWith('```json')) {

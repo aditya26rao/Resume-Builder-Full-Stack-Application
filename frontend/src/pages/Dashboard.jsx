@@ -55,7 +55,6 @@ const Dashboard = () => {
     setIsLoading(true)
     try {
       const resumeText = await pdfToText(resume)
-      console.log("Extracted Resume Text:", resumeText);
       const { data } = await api.post('/api/ai/upload-resume', { title, resumeText }, {
         headers: {
           Authorization: token
