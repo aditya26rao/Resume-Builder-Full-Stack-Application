@@ -153,7 +153,6 @@ const ModernTemplate = ({ data, accentColor }) => {
 							<h2 className="text-2xl font-light mb-4 pb-2 border-b border-gray-200">
 								Skills
 							</h2>
-							{console.log("Inside Skills section. Skills:", data.skills, "Type:", typeof data.skills, "Is Array?", Array.isArray(data.skills))}
 							<div className="flex flex-wrap gap-2">
 								{data.skills.map((skill, index) => (
 									<span

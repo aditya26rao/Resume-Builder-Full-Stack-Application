@@ -27,7 +27,6 @@ const App = () => {
       }
     } catch (error) {
       dispatch(setLoading(false))
-      console.log(error.message)
     }
   }
   useEffect(() => {

@@ -84,9 +84,6 @@ export const updateResume = async (req, res) => {
 
         const { resumeId, resumeData, removeBackground } = req.body;
 
-        console.log("=== UPDATE RESUME ===");
-        console.log("removeBackground received:", removeBackground, "Type:", typeof removeBackground);
-
         const image = req.file; // we get image, and remove bg if its true, it will stored in file property
         let resumeDataCopy;
         if (typeof resumeData === 'string') {
@@ -96,9 +93,7 @@ export const updateResume = async (req, res) => {
         }
         //now we use imageKit to store the image in cloud
         if (image) {
-            console.log("Image detected:", image.filename);
             const transformationString = 'w-300,h-300,fo-face,z-0.75' + (removeBackground ? ',bg-remove' : '');
-            console.log("ImageKit transformation:", transformationString);
 
             const imageBufferData = fs.createReadStream(image.path);
             const response = await imageKit.upload({
@@ -109,7 +104,6 @@ export const updateResume = async (req, res) => {
                     pre: transformationString
                 }
             });
-            console.log("ImageKit response URL:", response.url);
             resumeDataCopy.personal_info.image = response.url
         }
 
