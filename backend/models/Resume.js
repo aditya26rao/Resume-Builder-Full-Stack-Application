@@ -40,11 +40,11 @@ const ResumeSchema = new mongoose.Schema({
             institution: { type: String },
             degree: { type: String },
             field: { type: String },
-            graduatiom_date: { type: String },
+            graduation_date: { type: String },
             gpa: { type: String },
         }
     ],
-}, { timeseries: true, minimize: false }) //minimize: false, can be used to create a empty obj resume
+}, { minimize: false }) //minimize: false, can be used to create a empty obj resume
 
 const Resume = mongoose.model('Resume', ResumeSchema);
 

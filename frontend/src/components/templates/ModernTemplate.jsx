@@ -1,6 +1,6 @@
 import { Mail, Phone, MapPin, Linkedin, Globe } from "lucide-react";
 
-const ModernTemplate = ({ data, accentColor}) => {
+const ModernTemplate = ({ data, accentColor }) => {
 	const formatDate = (dateStr) => {
 		if (!dateStr) return "";
 		const [year, month] = dateStr.split("-");
@@ -13,7 +13,7 @@ const ModernTemplate = ({ data, accentColor}) => {
 	return (
 		<div className="max-w-4xl mx-auto bg-white text-gray-800">
 			{/* Header */}
-			<header className="p-8" style={{ backgroundColor: accentColor}}>
+			<header className="p-8" style={{ backgroundColor: accentColor }}>
 				<h1 className="text-4xl font-light mb-3">
 					{data.personal_info?.full_name || "Your Name"}
 				</h1>
@@ -77,7 +77,7 @@ const ModernTemplate = ({ data, accentColor}) => {
 									<div className="flex justify-between items-start mb-2">
 										<div>
 											<h3 className="text-xl font-medium text-gray-900">{exp.position}</h3>
-											<p className="font-medium" style={{ color: accentColor}}>{exp.company}</p>
+											<p className="font-medium" style={{ color: accentColor }}>{exp.company}</p>
 										</div>
 										<div className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded">
 											{formatDate(exp.start_date)} - {exp.is_current ? "Present" : formatDate(exp.end_date)}
@@ -103,7 +103,7 @@ const ModernTemplate = ({ data, accentColor}) => {
 
 						<div className="space-y-6">
 							{data.project.map((p, index) => (
-								<div key={index} className="relative pl-6 border-l border-gray-200" style={{ borderLeftColor: accentColor}}>
+								<div key={index} className="relative pl-6 border-l border-gray-200" style={{ borderLeftColor: accentColor }}>
 
 
 									<div className="flex justify-between items-start">
@@ -136,7 +136,7 @@ const ModernTemplate = ({ data, accentColor}) => {
 										<h3 className="font-semibold text-gray-900">
 											{edu.degree} {edu.field && `in ${edu.field}`}
 										</h3>
-										<p style={{ color: accentColor}}>{edu.institution}</p>
+										<p style={{ color: accentColor }}>{edu.institution}</p>
 										<div className="flex justify-between items-center text-sm text-gray-600">
 											<span>{formatDate(edu.graduation_date)}</span>
 											{edu.gpa && <span>GPA: {edu.gpa}</span>}
@@ -153,13 +153,13 @@ const ModernTemplate = ({ data, accentColor}) => {
 							<h2 className="text-2xl font-light mb-4 pb-2 border-b border-gray-200">
 								Skills
 							</h2>
-
+							{console.log("Inside Skills section. Skills:", data.skills, "Type:", typeof data.skills, "Is Array?", Array.isArray(data.skills))}
 							<div className="flex flex-wrap gap-2">
 								{data.skills.map((skill, index) => (
 									<span
 										key={index}
 										className="px-3 py-1 text-sm text-white rounded-full"
-										style={{ backgroundColor: accentColor}}
+										style={{ backgroundColor: accentColor }}
 									>
 										{skill}
 									</span>

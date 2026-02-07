@@ -1,28 +1,40 @@
-import { useState } from "react"
-import { User2Icon, MailIcon, LockIcon } from "lucide-react"
+import { useState } from "react";
+import { User2Icon, MailIcon, LockIcon } from "lucide-react";
+import api from "../configs/api";
+import { useDispatch } from "react-redux";
+import { login } from "../app/features/authSlice";
+import toast from "react-hot-toast";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const query = new URLSearchParams(window.location.search);
+  const urlState = query.get("state");
 
-  const query = new URLSearchParams(window.location.search)
-  const urlState = query.get('state')
-
-
-  const [state, setState] = useState(urlState || "login")
+  const [state, setState] = useState(urlState || "login");
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: ''
-  })
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
-  }
+    e.preventDefault();
+    try {
+      const { data } = await api.post(`/api/users/${state}`, formData);
+      dispatch(login(data));
+      localStorage.setItem('token', data.token)
+      toast.success(data.message)
+    } catch (error) {
+      toast(error?.response?.data?.message || error.message)
+
+    }
+  };
 
   const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <div className="w-full min-h-screen flex justify-center items-center bg-gray-100 px-4">
@@ -99,15 +111,19 @@ const Login = () => {
 
         {/* Switch Login/Register */}
         <p
-          onClick={() => setState(prev => prev === "login" ? "register" : "login")}
+          onClick={() =>
+            setState((prev) => (prev === "login" ? "register" : "login"))
+          }
           className="text-gray-500 text-sm mt-3 mb-11 cursor-pointer"
         >
-          {state === "login" ? "Don't have an account?" : "Already have an account?"}
+          {state === "login"
+            ? "Don't have an account?"
+            : "Already have an account?"}
           <span className="text-indigo-500 hover:underline"> click here</span>
         </p>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import Resume from "../models/Resume.js";
 
-const generateToken = () => {
+const generateToken = (userId) => {
     const token = jwt.sign({ userId }, process.env.JWT_SECRET, {
         expiresIn: "7d",
     });
@@ -56,7 +56,7 @@ export const loginUser = async (req, res) => {
             return res.status(400).json({ message: "Invalid email or password" });
         }
         //check if password is correct
-        if (!user.compatePassword(password)) {
+        if (!user.comparePassword(password)) {
             return res.status(400).json({ message: "Invalid email or password" });
         }
         // return success message

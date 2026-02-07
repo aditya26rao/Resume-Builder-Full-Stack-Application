@@ -34,11 +34,14 @@ const PersonalInfoForm = ({ data, onChange, removeBackground, setRemoveBackgroun
                 {typeof data.image === 'object' && (
                     <div className='flex flex-col gap-1 pl-4 text-sm'>
                         <p>Remove Background</p>
-                        <label className='relative inline-flex items-center cursor-pointer text-gray-900 gap-3'>
-                            <input type="checkbox" className='sr-only peer' onChange={() => setRemoveBackground(prev => !prev)} checked={removeBackground} />
-                            <div className='w-9 h-5 bg-slate-300 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200'>
-                                <span className='dot absolute left-1 top-1 w-3 h-3 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-4'></span>
-                            </div>
+                        <label className='relative inline-flex items-center cursor-pointer'>
+                            <input
+                                type="checkbox"
+                                className='sr-only peer'
+                                onChange={() => setRemoveBackground(prev => !prev)}
+                                checked={removeBackground}
+                            />
+                            <div className='w-11 h-6 bg-gray-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:bg-green-600 after:content-[""] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all'></div>
                         </label>
                     </div>
                 )}

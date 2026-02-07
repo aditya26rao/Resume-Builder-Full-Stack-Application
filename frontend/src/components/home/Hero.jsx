@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-
+  const { user } = useSelector(state => state.auth)
   const logos = [
     'https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg',
     'https://saasly.prebuiltui.com/assets/companies-logo/framer.svg',
@@ -33,15 +34,18 @@ const Hero = () => {
         <div className="flex gap-2">
           <Link
             to="/app?state=register"
-            className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white"
+            className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white" hidden={user}
           >
             Get started
           </Link>
           <Link
             to="/app?state=login"
-            className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900"
+            className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" hidden={user}
           >
             Login
+          </Link>
+          <Link to='/app' className='hidden md:block px-8 py-2 bg-green-500  hover:bg-green-700 active:scale-95 transition-all rounded-full text-white' hidden={!user}>
+            Dashboard
           </Link>
         </div>
 
@@ -63,9 +67,8 @@ const Hero = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${
-          menuOpen ? 'translate-x-0' : '-translate-x-full'
-        }`}
+        className={`fixed inset-0 z-[100] bg-black/40 text-black backdrop-blur flex flex-col items-center justify-center text-lg gap-8 md:hidden transition-transform duration-300 ${menuOpen ? 'translate-x-0' : '-translate-x-full'
+          }`}
       >
         <a href="#home" className="text-white" onClick={() => setMenuOpen(false)}>Home</a>
         <a href="#features" className="text-white" onClick={() => setMenuOpen(false)}>Features</a>
