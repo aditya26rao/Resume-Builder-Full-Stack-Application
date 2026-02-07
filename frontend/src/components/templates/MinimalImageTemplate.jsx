@@ -118,6 +118,27 @@ const MinimalImageTemplate = ({ data = {}, accentColor }) => {
             </section>
           )}
 
+          {/* PROJECTS */}
+          {data.projects?.length > 0 && (
+            <section className="mb-8">
+              <h2 style={{ color: accentColor }} className="font-semibold mb-4">
+                PROJECTS
+              </h2>
+
+              {data.projects.map((proj, i) => (
+                <div key={i} className="mb-4">
+                  <h3 className="font-semibold">{proj.name}</h3>
+                  {proj.type && (
+                    <p className="text-xs text-gray-600 mb-1">{proj.type}</p>
+                  )}
+                  {proj.description && (
+                    <p className="text-sm text-gray-700 leading-relaxed">{proj.description}</p>
+                  )}
+                </div>
+              ))}
+            </section>
+          )}
+
           {data.experience?.length > 0 && (
             <section>
               <h2 style={{ color: accentColor }} className="font-semibold mb-4">

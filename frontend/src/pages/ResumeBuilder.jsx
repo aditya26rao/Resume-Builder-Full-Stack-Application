@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import api from "../configs/api";
 import { dummyResumeData } from "../assets/assets";
+import toast from "react-hot-toast";
 
 import {
   ArrowLeftIcon,
@@ -27,9 +29,11 @@ import ExperienceForm from "../components/ExperienceForm";
 import EducationForm from "../components/EducationForm";
 import ProjectForm from "../components/ProjectForm";
 import SkillsForm from "../components/SkillsForm";
+import { useSelector } from "react-redux";
 
 const ResumeBuilder = () => {
   const { resumeId } = useParams();
+  const { token } = useSelector((state) => state.auth)
 
   /* ===============================
      STATE
@@ -54,13 +58,25 @@ const ResumeBuilder = () => {
   /* ===============================
      LOAD EXISTING RESUME
   =============================== */
-  useEffect(() => {
-    const resume = dummyResumeData.find((r) => r._id === resumeId);
-    if (resume) {
-      setResumeData(resume);
-      document.title = resume.title;
+  const loadExistingResume = async () => {
+    try {
+      const { data } = await api.get(`/api/resumes/get/${resumeId}`, {
+        headers: { Authorization: token }
+      })
+      if (data.resume) {
+        setResumeData(data.resume)
+        document.title = data.resume.title
+      }
+    } catch (error) {
+      console.error("Error loading resume:", error.response?.data || error.message)
     }
-  }, [resumeId]);
+  }
+
+  useEffect(() => {
+    if (resumeId && token) {
+      loadExistingResume()
+    }
+  }, [resumeId])
 
   /* ===============================
      SECTIONS
@@ -83,8 +99,20 @@ const ResumeBuilder = () => {
      ACTIONS
   =============================== */
 
-  const changeResumeVisibility = () => {
-    setResumeData((prev) => ({ ...prev, public: !prev.public }));
+  const changeResumeVisibility = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("resumeId", resumeId);
+      formData.append("resumeData", JSON.stringify({ public: !resumeData.public }));
+      const { data } = await api.put(`/api/resumes/update/`, formData, {
+        headers: { Authorization: token }
+      })
+      setResumeData({ ...resumeData, public: !resumeData.public })
+      toast.success(data.message)
+    } catch (error) {
+      console.error('Error saving resume:', error);
+      toast.error('Failed to update visibility');
+    }
   };
 
   const handleShare = () => {
@@ -104,6 +132,31 @@ const ResumeBuilder = () => {
   const downloadResume = () => {
     window.print();
   };
+
+  const saveResume = async () => {
+    try {
+      let updatedResumeData = structuredClone(resumeData)
+      //remove image from updatedResumeData
+      if (typeof resumeData.personal_info.image === 'object') {
+        delete updatedResumeData.personal_info.image;
+      }
+      const formData = new FormData();
+      formData.append("resumeId", resumeId);
+      formData.append("resumeData", JSON.stringify(updatedResumeData));
+
+      removeBackground && formData.append("removeBackground", removeBackground);
+
+      typeof resumeData.personal_info.image === 'object' && formData.append("image", resumeData.personal_info.image);
+
+      const { data } = await api.put(`/api/resumes/update/`, formData, {
+        headers: { Authorization: token }
+      })
+      setResumeData(data.resume)
+      toast.success(data.message)
+    } catch (error) {
+      console.error('Error saving resume:', error);
+    }
+  }
 
   const handleSave = () => {
     localStorage.setItem("resumeData", JSON.stringify(resumeData));
@@ -227,6 +280,7 @@ const ResumeBuilder = () => {
                         professional_summary: data,
                       }))
                     }
+                    setResumeData={setResumeData}
                   />
                 )}
 
@@ -281,7 +335,9 @@ const ResumeBuilder = () => {
 
               {/* Save */}
               <button
-                onClick={handleSave}
+                onClick={() => toast.promise(saveResume(), {
+                  loading: 'Saving changes...'
+                })}
                 className="w-full mt-6 bg-green-500 text-white rounded-md py-2"
               >
                 Save Changes

@@ -23,13 +23,21 @@ const ResumePreview = ({ data, template, accentColor, classes = '' }) => {
     <div className='w-full bg-gray-100'>
       <div
         id='resume-preview'
-        className={`border border-gray-200 print:shadow-none print:border-none ${classes}`}
+        className={`border border-gray-200 print:shadow-none print:border-none origin-top ${classes}`}
+        style={{
+          transform: 'scale(0.75)',
+          transformOrigin: 'top center',
+        }}
       >
         {renderTemplate()}
 
         {/* Print CSS */}
         <style>{`
           @media print {
+            #resume-preview {
+              transform: none !important;
+            }
+            
             @page {
               size: auto;
               margin: 0mm;

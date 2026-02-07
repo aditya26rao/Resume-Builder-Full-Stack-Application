@@ -1,5 +1,5 @@
-import imageKit from "../configs/imageKit";
-import Resume from "../models/Resume";
+import imageKit from '../configs/imageKit.js'
+import Resume from "../models/Resume.js";
 import fs from 'fs';
 
 // controller for creating a new resume
@@ -84,23 +84,34 @@ export const updateResume = async (req, res) => {
 
         const { resumeId, resumeData, removeBackground } = req.body;
 
-        const image = req.file; // we get image, and remove bg if its true, it will stored in file property
+        console.log("=== UPDATE RESUME ===");
+        console.log("removeBackground received:", removeBackground, "Type:", typeof removeBackground);
 
-        // now we use imageKit to store the image in cloud
+        const image = req.file; // we get image, and remove bg if its true, it will stored in file property
+        let resumeDataCopy;
+        if (typeof resumeData === 'string') {
+            resumeDataCopy = await JSON.parse(resumeData)
+        } else {
+            resumeDataCopy = structuredClone(resumeData)
+        }
+        //now we use imageKit to store the image in cloud
         if (image) {
+            console.log("Image detected:", image.filename);
+            const transformationString = 'w-300,h-300,fo-face,z-0.75' + (removeBackground ? ',bg-remove' : '');
+            console.log("ImageKit transformation:", transformationString);
+
             const imageBufferData = fs.createReadStream(image.path);
-            const response = await imageKit.files.upload({
+            const response = await imageKit.upload({
                 file: imageBufferData,
                 fileName: 'resume.png',
                 folder: 'user-resumes',
                 transformation: {
-                    pre: 'w-300,h-300,fo-face,z-0.75' + (removeBackground ? ',b-bgremove' : '')
+                    pre: transformationString
                 }
             });
+            console.log("ImageKit response URL:", response.url);
             resumeDataCopy.personal_info.image = response.url
         }
-
-        let resumeDataCopy = JSON.parse(resumeData) //copy the resume
 
         const resume = await Resume.findOneAndUpdate({ userId, _id: resumeId }, resumeDataCopy, { new: true }) //it store in db
 
