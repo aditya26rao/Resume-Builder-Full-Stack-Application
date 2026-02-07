@@ -24,27 +24,27 @@ const Hero = () => {
 
         {/* Anchor links for same-page scroll */}
         <div className="hidden md:flex items-center gap-8 transition duration-500 text-slate-800">
-          <a href="#home" className="hover:text-green-600 transition">Home</a>
-          <a href="#features" className="hover:text-green-600 transition">Features</a>
-          <a href="#testimonials" className="hover:text-green-600 transition">Testimonials</a>
-          <a href="#cta" className="hover:text-green-600 transition">Contact</a>
+          <a href="#home" className="hover:text-sky-600 transition">Home</a>
+          <a href="#features" className="hover:text-sky-600 transition">Features</a>
+          <a href="#testimonials" className="hover:text-sky-600 transition">Testimonials</a>
+          <a href="#cta" className="hover:text-sky-600 transition">Contact</a>
         </div>
 
         {/* Internal routes */}
         <div className="flex gap-2">
           <Link
             to="/app?state=register"
-            className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white" hidden={user}
+            className="hidden md:block px-6 py-2 bg-gradient-to-r from-sky-500 to-violet-500 hover:from-sky-600 hover:to-violet-600 active:scale-95 transition-all rounded-full text-white" hidden={user}
           >
             Get started
           </Link>
           <Link
             to="/app?state=login"
-            className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" hidden={user}
+            className="hidden md:block px-6 py-2 border border-sky-200 active:scale-95 hover:bg-sky-50 transition-all rounded-full text-sky-700 hover:text-sky-900" hidden={user}
           >
             Login
           </Link>
-          <Link to='/app' className='hidden md:block px-8 py-2 bg-green-500  hover:bg-green-700 active:scale-95 transition-all rounded-full text-white' hidden={!user}>
+          <Link to='/app' className='hidden md:block px-8 py-2 bg-gradient-to-r from-sky-500 to-violet-500 hover:from-sky-600 hover:to-violet-600 active:scale-95 transition-all rounded-full text-white' hidden={!user}>
             Dashboard
           </Link>
         </div>
@@ -77,7 +77,7 @@ const Hero = () => {
 
         <button
           onClick={() => setMenuOpen(false)}
-          className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-green-600 hover:bg-green-700 transition text-white rounded-md flex"
+          className="active:ring-3 active:ring-white aspect-square size-10 p-1 items-center justify-center bg-sky-600 hover:bg-sky-700 transition text-white rounded-md flex"
         >
           X
         </button>
@@ -88,7 +88,7 @@ const Hero = () => {
         id="home"
         className="relative flex flex-col items-center justify-center text-sm px-4 md:px-16 lg:px-24 xl:px-40 text-black"
       >
-        <div className="absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-green-300 blur-[100px] opacity-30"></div>
+        <div className="absolute top-28 xl:top-10 -z-10 left-1/4 size-72 sm:size-96 xl:size-120 2xl:size-132 bg-sky-300 blur-[100px] opacity-30"></div>
 
         {/* Avatars + Stars */}
         <div className="flex items-center mt-24">
@@ -131,7 +131,7 @@ const Hero = () => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="lucide lucide-star text-transparent fill-green-600"
+                    className="lucide lucide-star text-transparent fill-sky-500"
                   >
                     <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
                   </svg>
@@ -144,7 +144,7 @@ const Hero = () => {
         {/* Headline + CTA */}
         <h1 className="text-5xl md:text-6xl font-semibold max-w-5xl text-center mt-4 md:leading-[70px]">
           Land your dream job with{' '}
-          <span className="bg-gradient-to-r from-green-700 to-green-600 bg-clip-text text-transparent text-nowrap">
+          <span className="bg-gradient-to-r from-sky-600 to-violet-600 bg-clip-text text-transparent text-nowrap">
             AI-powered
           </span>{' '}
           resumes.
@@ -158,7 +158,7 @@ const Hero = () => {
         <div className="flex items-center gap-4">
           <Link
             to="/app?state=register"
-            className="bg-green-500 hover:bg-green-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-green-400 flex items-center transition-colors"
+            className="bg-gradient-to-r from-sky-500 to-violet-500 hover:from-sky-600 hover:to-violet-600 text-white rounded-full px-9 h-12 m-1 ring-offset-2 ring-1 ring-sky-300 flex items-center transition-colors"
           >
             Get started
             <svg
@@ -177,25 +177,6 @@ const Hero = () => {
               <path d="m12 5 7 7-7 7"></path>
             </svg>
           </Link>
-
-          <button className="flex items-center gap-2 border border-slate-400 hover:bg-green-50 transition rounded-full px-7 h-12 text-slate-700">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="lucide lucide-video size-5"
-            >
-              <path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"></path>
-              <rect x="2" y="6" width="14" height="12" rx="2"></rect>
-            </svg>
-            <span>Try demo</span>
-          </button>
         </div>
 
         <p className="py-6 text-slate-600 mt-14">Trusted by leading brands, including</p>

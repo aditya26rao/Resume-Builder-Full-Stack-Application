@@ -62,7 +62,7 @@ const Testimonial = () => {
         <>
             <div id="testimonials" className="flex flex-col items-center my-10 scroll-mt-12">
                 <div className="flex items-center gap-2 text-sm text-slate-800 bg-slate-400/10 border border-slate-200 rounded-full px-6 py-1.5">
-                    <BookUserIcon className='size-4.5 stroke-green-600' />
+                    <BookUserIcon className='size-4.5 stroke-sky-600' />
                     <span>Testimonails</span>
                 </div>
                 <Title title="Don't just take our words" description='Our streamlined process helps you create a professional resume in minutes with intelligent AI-powered tools and features.' />
