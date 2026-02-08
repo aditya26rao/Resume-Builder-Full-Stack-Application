@@ -6,11 +6,10 @@ const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useSelector(state => state.auth)
   const logos = [
-    '/company-logos/instagram.svg',
-    '/company-logos/framer.svg',
-    '/company-logos/microsoft.svg',
-    '/company-logos/huawei.svg',
-    '/company-logos/walmart.svg',
+    '/company-logos/framer.png',
+    '/company-logos/microsoft.png',
+    '/company-logos/huawei.png',
+    '/company-logos/walmart.png',
   ];
 
   return (
@@ -183,12 +182,16 @@ const Hero = () => {
 
         <div className="flex flex-wrap justify-between max-sm:justify-center gap-6 max-w-3xl w-full mx-auto py-4">
           {logos.map((logo, index) => (
-            <img
+            <div
               key={index}
-              src={logo}
-              alt={`logo-${index}`}
-              className="h-6 w-auto max-w-xs opacity-80 hover:opacity-100 transition"
-            />
+              className="h-14 w-32 flex items-center justify-center opacity-80 hover:opacity-100 transition"
+            >
+              <img
+                src={logo}
+                alt={`logo-${index}`}
+                className="max-h-full max-w-full object-contain"
+              />
+            </div>
           ))}
         </div>
       </div>
