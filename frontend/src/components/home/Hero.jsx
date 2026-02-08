@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -6,11 +6,11 @@ const Hero = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useSelector(state => state.auth)
   const logos = [
-    'https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg',
-    'https://saasly.prebuiltui.com/assets/companies-logo/framer.svg',
-    'https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg',
-    'https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg',
-    'https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg',
+    '/company-logos/instagram.svg',
+    '/company-logos/framer.svg',
+    '/company-logos/microsoft.svg',
+    '/company-logos/huawei.svg',
+    '/company-logos/walmart.svg',
   ];
 
   return (
@@ -197,3 +197,5 @@ const Hero = () => {
 };
 
 export default Hero;
+
+
