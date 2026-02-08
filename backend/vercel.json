@@ -1,8 +1,0 @@
-{
-  "installCommand": "npm install --legacy-peer-deps",
-  "functions": {
-    "index.js": {
-      "runtime": "nodejs20.x"
-    }
-  }
-}
