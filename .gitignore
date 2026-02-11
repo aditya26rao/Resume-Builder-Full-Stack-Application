@@ -12,9 +12,9 @@ build/
 # =========================
 # Environment variables (IMPORTANT)
 # =========================
-# .env
-# .env.*
-# !.env.example
+.env
+.env.*
+!.env.example
 
 # =========================
 # Logs
